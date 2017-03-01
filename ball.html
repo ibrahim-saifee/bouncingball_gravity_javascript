@@ -46,16 +46,16 @@
 		y = ball.offsetTop+10;
 		x = ball.offsetLeft+10;
 		
-		vvel = vvel + g*ydir;
-		y += vvel*ydir;
-		x += hvel*xdir
+		vvel = vvel + g*ydir*1;
+		y += vvel*ydir*1;
+		x += hvel*xdir*1;
 
 		if(y>window.innerHeight-20)
 		{
 			y=window.innerHeight-20;
 			ydir=-1;
 			vvel-=3;
-			hvel-=3;
+			hvel-=1;
 		}
 		
 		if(y<10)
@@ -63,19 +63,20 @@
 			y=10;
 			ydir=1;
 			vvel-=3;
-			hvel-=3;
+			hvel-=1;
 		}
 
 		if(vvel<=0)
 		{
 			ydir=1;
+			vvel=0;
 		}
 
 		if(x<10)
 		{
 			x=10;
 			xdir=1;
-			hvel-=3;
+			hvel-=1;
 			vvel-=3;
 		}
 
@@ -83,7 +84,7 @@
 		{
 			x = window.innerWidth-20;
 			xdir=-1;
-			hvel-=3;
+			hvel-=1;
 			vvel-=3;
 		}
 
@@ -94,7 +95,7 @@
 
 		ball.style.left = (x-10)+'px';
 		ball.style.top = (y-10)+'px';
-	},10);
+	},20);
 
 
 document.addEventListener("keydown", function(e)
@@ -128,14 +129,14 @@ var interval = setInterval(function()
 {
   if(oldX != window.screenX || oldY != window.screenY)
   {
-  	xdiff = (window.screenX - oldX)/10;
-  	ydiff = (window.screenY - oldY)/10;
+  	xdiff = (window.screenX - oldX)/2;
+  	ydiff = (window.screenY - oldY)/2;
   	hvel -= xdiff*xdir;
   	vvel -= ydiff*ydir;
   	oldX = window.screenX;
   	oldY = window.screenY;
   } 
-}, 10);
+}, 1);
 
 </script>
 
